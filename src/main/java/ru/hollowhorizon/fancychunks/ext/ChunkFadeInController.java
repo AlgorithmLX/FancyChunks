@@ -4,6 +4,8 @@ import me.jellysquid.mods.sodium.client.gl.buffer.GlMutableBuffer;
 import me.jellysquid.mods.sodium.client.gl.device.CommandList;
 import me.jellysquid.mods.sodium.client.render.chunk.RenderSection;
 import me.jellysquid.mods.sodium.client.render.chunk.region.RenderRegion;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -30,7 +32,7 @@ public class ChunkFadeInController {
         progressMap.remove(chunkId);
     }
 
-    public void updateChunksFade(List<RenderSection> chunks, ChunkShaderInterfaceExt shader, CommandList commandList) {
+    public void updateChunksFade(List<RenderSection> chunks, @Nullable ChunkShaderInterfaceExt shader, CommandList commandList) {
         checkMutableBuffer(commandList);
 
         final long currentFrameTime = ZonedDateTime.now().toInstant().toEpochMilli();
@@ -40,7 +42,9 @@ public class ChunkFadeInController {
             processChunk(delta, chunk);
 
         chunkFadeDatasBuffer.uploadData(commandList, chunkGlFadeDataBuffer);
-        shader.setFadeDatas(chunkGlFadeDataBuffer);
+        if (shader != null)
+            shader.setFadeDatas(chunkGlFadeDataBuffer);
+
         lastFrameTime = currentFrameTime;
     }
 
