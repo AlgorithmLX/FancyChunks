@@ -1,4 +1,4 @@
-package ru.hollowhorizon.fancychunks.ext;
+package ru.hollowhorizon.fancychunks.core;
 
 import java.util.function.Function;
 import java.util.function.UnaryOperator;

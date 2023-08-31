@@ -1,4 +1,4 @@
-package ru.hollowhorizon.fancychunks.mixin;
+package ru.hollowhorizon.fancychunks.mixin.chunk;
 
 import me.jellysquid.mods.sodium.client.gl.device.CommandList;
 import me.jellysquid.mods.sodium.client.render.chunk.*;
@@ -17,11 +17,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@Mixin(value = RegionChunkRenderer.class, remap = false, priority = 1)
+@Mixin(value = RegionChunkRenderer.class, remap = false)
 public class RegionChunkRendererMixin {
-    public RegionChunkRendererMixin() {
-    }
-
     @Inject(
             method = "render",
             at = @At(
@@ -32,8 +29,10 @@ public class RegionChunkRendererMixin {
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     private void modifyChunkRender(ChunkRenderMatrices matrices, CommandList commandList, ChunkRenderList list, BlockRenderPass pass, ChunkCameraContext camera, CallbackInfo ci, ChunkShaderInterface shader, Iterator i, Map.Entry e, RenderRegion region, List<RenderSection> chunks) {
-        ChunkShaderInterfaceExt ext = (ChunkShaderInterfaceExt) shader;
-        RenderRegionExt regionExt = (RenderRegionExt) region;
+        if (shader == null) return;
+
+        final ChunkShaderInterfaceExt ext = (ChunkShaderInterfaceExt) shader;
+        final RenderRegionExt regionExt = (RenderRegionExt) region;
         regionExt.updateChunksFade(chunks, ext, commandList);
     }
 }

@@ -3,12 +3,20 @@
   "minVersion": "0.8",
   "package": "ru.hollowhorizon.fancychunks.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "ru.hollowhorizon.fancychunks.FancyChunksMixinConfig",
   "refmap": "fancychunks.refmap.json",
   "mixins": [
-    "ChunkShaderInterfaceMixin",
-    "RegionChunkRendererMixin",
-    "RenderRegionMixin",
-    "ShaderLoaderMixin"
+    "chunk.LevelChunkMixin",
+    "chunk.RegionChunkRendererMixin",
+    "chunk.RenderRegionManagerMixin",
+    "chunk.RenderRegionMixin",
+    "entity.SodiumWorldRendererMixin",
+    "oculus.OculusChunkProgramOverridesMixin",
+    "oculus.OculusRegionChunkRendererMixin",
+    "oculus.ProgramUniforms$BuilderMixin",
+    "oculus.versioned.v15OculusShaderInterfaceMixin",
+    "shader.ChunkShaderInterfaceMixin",
+    "shader.ShaderLoaderMixin"
   ],
   "client": [
   ],

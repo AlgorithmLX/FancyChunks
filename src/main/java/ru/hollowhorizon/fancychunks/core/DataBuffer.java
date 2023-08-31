@@ -1,4 +1,4 @@
-package ru.hollowhorizon.fancychunks.ext;
+package ru.hollowhorizon.fancychunks.core;
 
 import me.jellysquid.mods.sodium.client.gl.buffer.GlBufferUsage;
 import me.jellysquid.mods.sodium.client.gl.buffer.GlMutableBuffer;
